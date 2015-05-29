@@ -1,18 +1,8 @@
 import React from 'react';
-
-import Skycons from '../dist/react-skycons';
 import request from 'superagent';
 
-var weatherMap = {
-  Clouds: 'CLOUDY',
-  Thunderstorm: 'rain',
-  Drizzle:'',
-  Rain: '',
-  Snow: '',
-  Atmosphere: '',
-  Extreme: '',
-  Additional: ''
-};
+import Skycons from '../dist/react-skycons';
+import Usage from './usage';
 
 var dayMap = [
   'Monday',
@@ -24,37 +14,6 @@ var dayMap = [
   'Sunday'
 ];
 
-var Usage = React.createClass({
-
-  propTypes: {
-    value: React.PropTypes.string,
-    children: React.PropTypes.node
-  },
-
-  getDefaultProps() {
-    return {
-      value: ''
-    };
-  },
-
-  _select(event) {
-    event.currentTarget.select();
-  },
-
-  render() {
-    return (
-      <div className='icon-usage'>
-        {this.props.children}
-        <br/>
-        <input
-          onClick={this._select}
-          type='text'
-          value={this.props.value}
-          readonly />
-      </div>
-    );
-  }
-});
 
 var Demo = React.createClass({
 

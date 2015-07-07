@@ -4,7 +4,7 @@ import request from 'superagent';
 import Skycons from '../dist/react-skycons';
 import Usage from './usage';
 
-var dayMap = [
+const DAY_MAP = [
   'Monday',
   'Tuesday',
   'Wednesday',
@@ -15,9 +15,9 @@ var dayMap = [
 ];
 
 
-var Demo = React.createClass({
+const Demo = React.createClass({
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       name: null,
       temperature: null,
@@ -27,7 +27,7 @@ var Demo = React.createClass({
 
   componentWillMount() {
     navigator.geolocation.getCurrentPosition((position) => {
-      var {latitude, longitude} = position.coords;
+      let {latitude, longitude} = position.coords;
       this._fetchWeather(latitude, longitude);
     }, () => {
       this._fetchWeather(25.03, 121.30);
@@ -44,7 +44,7 @@ var Demo = React.createClass({
         } else {
 
           this.setState({
-            day: dayMap[(new Date()).getDay()],
+            day: DAY_MAP[(new Date()).getDay()],
             celsius: this._toCelsius(res.body.main.temp),
             icon: this._getIcon(res.body.weather[0].id),
             description: res.body.weather[0].description,
@@ -80,21 +80,27 @@ var Demo = React.createClass({
   },
 
   _toCelsius(temp) {
-    return parseInt( (temp - 273.15) * 10 ) / 10 +  '°C';
+    return parseInt( (temp - 273.15) * 10 ) / 10 + '°C';
   },
 
   render() {
+    let {
+      icon,
+      celsius,
+      description,
+      name
+    } = this.state;
     return (
       <div className='wrapper'>
         <h1>Demo</h1>
         <div className='icon-demo'>
           <h1>{this.state.day}</h1>
-          <Skycons color='white' icon={this.state.icon} />
+          <Skycons color='white' icon={icon} />
           <br />
-          <h1 className='temperature' >{this.state.celsius}</h1>
-          <label className='description' >{this.state.description}</label>
+          <h1 className='temperature' >{celsius}</h1>
+          <label className='description' >{description}</label>
           <hr/>
-          <h1 className='cityname'>{this.state.name}</h1>
+          <h1 className='cityname'>{name}</h1>
         </div>
 
         <br />

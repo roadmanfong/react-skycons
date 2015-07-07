@@ -1,6 +1,6 @@
 import React from 'react';
 
-var Usage = React.createClass({
+const Usage = React.createClass({
 
   propTypes: {
     value: React.PropTypes.string,
@@ -13,19 +13,21 @@ var Usage = React.createClass({
     };
   },
 
-  _select(event) {
+  handleSelect(event) {
     event.currentTarget.select();
   },
 
   render() {
+    let {children, value} = this.props;
+
     return (
       <div className='icon-usage'>
-        {this.props.children}
+        {children}
         <br/>
         <input
-          onClick={this._select}
+          onClick={this.handleSelect}
           type='text'
-          value={this.props.value}
+          value={value}
           readonly />
       </div>
     );

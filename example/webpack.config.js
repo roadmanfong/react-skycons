@@ -1,38 +1,29 @@
+/*eslint no-var: 0*/
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
-  entry: __dirname + '/index.jsx',
+  entry: path.join(__dirname, 'index.js'),
   output: {
     path: 'assets',
-    filename: 'bundle.js',
+    filename: 'bundle.js'
   },
   module: {
     loaders: [
       {
-        test: /\.jsx?$/,
+        test: /\.js$/,
         loader: 'babel-loader'
       },
       {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
-      },
-      {
-        test: /\.(otf|eot|svg|ttf|woff)$/,
-        loader: 'url-loader?limit=8192'
       }
     ]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx', '.json']
+    extensions: ['', '.js']
   },
   plugins: [
-    new webpack.ProvidePlugin({
-      $: "jquery",
-      jQuery: "jquery",
-      "window.jQuery": "jquery",
-      "root.jQuery": "jquery"
-    }),
     new ExtractTextPlugin('bundle.css')
   ]
 };

@@ -1,7 +1,7 @@
 import React from 'react';
-var Skycons = require('skycons')(window);
+const Skycons = require('skycons')(window);
 
-var ReactSkycons = React.createClass({
+const ReactSkycons = React.createClass({
 
   propTypes: {
     color: React.PropTypes.string,
@@ -54,8 +54,8 @@ var ReactSkycons = React.createClass({
   },
 
   render() {
-    var props = {};
-    for(var prop in this.props){
+    let props = {};
+    for(let prop in this.props){
       props[prop] = this.props[prop];
     }
     delete props.autoplay;
@@ -65,4 +65,4 @@ var ReactSkycons = React.createClass({
   }
 });
 
-module.exports = ReactSkycons;
+export default ReactSkycons;

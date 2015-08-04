@@ -44,6 +44,10 @@ const ReactSkycons = React.createClass({
    this.state.skycons.set(React.findDOMNode(this), Skycons[nextProps.icon]);
   },
 
+  componentWillUnmount: function componentWillUnmount() {
+    this.state.skycons.pause();
+    this.state.skycons.remove(React.findDOMNode(this));
+  },
 
   play() {
     this.state.skycons.play();

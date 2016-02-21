@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 const Skycons = require('skycons')(window);
 
 const ReactSkycons = React.createClass({
@@ -34,19 +35,19 @@ const ReactSkycons = React.createClass({
   },
 
   componentDidMount() {
-    this.state.skycons.add(React.findDOMNode(this), Skycons[this.props.icon]);
+    this.state.skycons.add(ReactDOM.findDOMNode(this), Skycons[this.props.icon]);
     if(this.props.autoplay){
       this.state.skycons.play();
     }
   },
 
   componentWillReceiveProps(nextProps) {
-   this.state.skycons.set(React.findDOMNode(this), Skycons[nextProps.icon]);
+   this.state.skycons.set(ReactDOM.findDOMNode(this), Skycons[nextProps.icon]);
   },
 
   componentWillUnmount: function componentWillUnmount() {
     this.state.skycons.pause();
-    this.state.skycons.remove(React.findDOMNode(this));
+    this.state.skycons.remove(ReactDOM.findDOMNode(this));
   },
 
   play() {

@@ -1,4 +1,4 @@
 .DS_Store
-/dist
+/dist/*.js
 /node_modules
 /example/assets

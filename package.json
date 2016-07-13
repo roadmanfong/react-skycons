@@ -5,7 +5,7 @@
   "main": "dist/react-skycons.js",
   "scripts": {
     "lint": "eslint .",
-    "build": "./node_modules/.bin/babel src/react-skycons.js --out-file dist/react-skycons.js --presets react",
+    "build": "./node_modules/.bin/babel src/react-skycons.js --out-file dist/react-skycons.js",
     "prepublish": "npm run build",
     "prebuild": "npm run lint",
     "example": "npm run build && webpack example/index.js --config example/webpack.config.js --output-path example/assets"

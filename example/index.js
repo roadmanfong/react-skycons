@@ -1,4 +1,7 @@
+/* eslint-disable quotes */
+
 import React from 'react';
+import { render } from 'react-dom';
 import request from 'superagent';
 
 import Skycons from '../dist/react-skycons';
@@ -167,4 +170,7 @@ const Demo = React.createClass({
 
 });
 
-React.render(<Demo />, document.getElementById('main'));
+render(
+  <Demo />,
+  document.getElementById('main')
+);

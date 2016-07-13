@@ -1,6 +1,4 @@
-/*eslint no-var: 0*/
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var path = require('path');
+const path = require('path');
 
 module.exports = {
   entry: path.join(__dirname, 'index.js'),
@@ -16,17 +14,10 @@ module.exports = {
         query: {
           presets: ['react', 'es2015']
         }
-      },
-      {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
       }
     ]
   },
   resolve: {
     extensions: ['', '.js']
-  },
-  plugins: [
-    new ExtractTextPlugin('bundle.css')
-  ]
+  }
 };

@@ -1,3 +1,6 @@
 example/
 src/
-gruntfile.coffee
+.npmignore
+.eslintignore
+.editorconfig
+.eslintrc

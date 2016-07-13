@@ -1,73 +1,81 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 const Skycons = require('skycons')(window);
 
-const ReactSkycons = React.createClass({
+class ReactSkycons extends Component {
+  constructor(props) {
+    super(props);
 
-  propTypes: {
-    color: React.PropTypes.string,
-    autoplay: React.PropTypes.bool,
-    icon: React.PropTypes.oneOf([
-      'CLEAR_DAY',
-      'CLEAR_NIGHT',
-      'PARTLY_CLOUDY_DAY',
-      'PARTLY_CLOUDY_NIGHT',
-      'CLOUDY',
-      'RAIN',
-      'SLEET',
-      'SNOW',
-      'WIND',
-      'FOG'
-    ])
-  },
-
-  getDefaultProps() {
-    return {
-      color: null,
-      autoplay: true
-    };
-  },
-
-  getInitialState() {
-    return {
+    this.state = {
       skycons: new Skycons({'color': this.props.color})
     };
-  },
+  }
 
   componentDidMount() {
     this.state.skycons.add(ReactDOM.findDOMNode(this), Skycons[this.props.icon]);
-    if(this.props.autoplay){
+
+    if (this.props.autoplay) {
       this.state.skycons.play();
     }
-  },
+  }
 
   componentWillReceiveProps(nextProps) {
-   this.state.skycons.set(ReactDOM.findDOMNode(this), Skycons[nextProps.icon]);
-  },
+    this.state.skycons.set(ReactDOM.findDOMNode(this), Skycons[nextProps.icon]);
+  }
 
-  componentWillUnmount: function componentWillUnmount() {
+  componentWillUnmount() {
     this.state.skycons.pause();
     this.state.skycons.remove(ReactDOM.findDOMNode(this));
-  },
+  }
 
   play() {
     this.state.skycons.play();
-  },
+  }
 
   pause() {
     this.state.skycons.pause();
-  },
+  }
 
   render() {
     let props = {};
-    for(let prop in this.props){
+
+    const defaultStyle = {
+      width: '100%',
+      height: '100%'
+    };
+
+    for (let prop in this.props) {
       props[prop] = this.props[prop];
     }
+
     delete props.autoplay;
+
     return (
-      <canvas {...props} />
+      <canvas style={defaultStyle} {...props} />
     );
   }
-});
+}
+
+ReactSkycons.defaultProps = {
+  color: null,
+  autoplay: true
+};
+
+ReactSkycons.propTypes = {
+  color: PropTypes.string,
+  autoplay: PropTypes.bool,
+  icon: PropTypes.oneOf([
+    'CLEAR_DAY',
+    'CLEAR_NIGHT',
+    'PARTLY_CLOUDY_DAY',
+    'PARTLY_CLOUDY_NIGHT',
+    'CLOUDY',
+    'RAIN',
+    'SLEET',
+    'SNOW',
+    'WIND',
+    'FOG'
+  ])
+};
 
 export default ReactSkycons;

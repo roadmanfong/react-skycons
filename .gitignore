@@ -1,4 +1,6 @@
 .DS_Store
-/dist/*.js
-/node_modules
-/example/assets
+npm-debug.log
+
+dist
+node_modules
+example/assets

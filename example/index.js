@@ -7,6 +7,7 @@ import request from 'superagent';
 import Skycons from '../dist/react-skycons';
 import Usage from './usage';
 
+const APPID = '095aa626833cf3dcc7df430c0f99b538';
 const DAY_MAP = [
   'Monday',
   'Tuesday',
@@ -40,7 +41,7 @@ const Demo = React.createClass({
 
   _fetchWeather(latitude, longitude){
     request
-      .get(`http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}`)
+      .get(`http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&APPID=${APPID}`)
       .end((err, res) => {
         if(err){
           console.log(err);

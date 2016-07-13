@@ -28,7 +28,7 @@ const Usage = React.createClass({
           onClick={this.handleSelect}
           type='text'
           value={value}
-          readonly />
+          readOnly />
       </div>
     );
   }

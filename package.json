@@ -1,6 +1,6 @@
 {
   "name": "react-skycons",
-  "version": "0.3.0",
+  "version": "0.7.0",
   "description": "",
   "main": "dist/react-skycons.js",
   "scripts": {
@@ -45,7 +45,8 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "eslint-config-standard": "^10.2.1",
-    "eslint-config-standard-react": "^5.0.0",    "babel-preset-react": "^6.24.1",
+    "eslint-config-standard-react": "^5.0.0",
+    "babel-preset-react": "^6.24.1",
     "eslint": "^3.0.1",
     "eslint-plugin-babel": "^3.3.0",
     "eslint-plugin-promise": "^3.6.0",

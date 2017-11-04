@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('path')
 
 module.exports = {
   entry: path.join(__dirname, 'index.js'),
@@ -12,7 +12,8 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel',
         query: {
-          presets: ['react', 'es2015']
+          presets: ['react', 'env'],
+          plugins: ['transform-class-properties', 'transform-object-rest-spread']
         }
       }
     ]
@@ -20,4 +21,4 @@ module.exports = {
   resolve: {
     extensions: ['', '.js']
   }
-};
+}

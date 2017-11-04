@@ -1,13 +1,11 @@
-/* eslint-disable quotes */
+import React from 'react'
+import { render } from 'react-dom'
+import request from 'superagent'
 
-import React from 'react';
-import { render } from 'react-dom';
-import request from 'superagent';
+import Skycons from '../dist/ReactSkycons'
+import Usage from './usage'
 
-import Skycons from '../dist/react-skycons';
-import Usage from './usage';
-
-const APPID = '095aa626833cf3dcc7df430c0f99b538';
+const APPID = '095aa626833cf3dcc7df430c0f99b538'
 const DAY_MAP = [
   'Monday',
   'Tuesday',
@@ -16,84 +14,81 @@ const DAY_MAP = [
   'Friday',
   'Saturday',
   'Sunday'
-];
+]
 
-
-const Demo = React.createClass({
-
-  getInitialState() {
-    return {
+class Demo extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
       name: null,
       temperature: null,
       weather: null
-    };
-  },
+    }
+  }
 
-  componentWillMount() {
+  componentWillMount () {
     navigator.geolocation.getCurrentPosition((position) => {
-      let {latitude, longitude} = position.coords;
-      this._fetchWeather(latitude, longitude);
+      const { latitude, longitude } = position.coords
+      this._fetchWeather(latitude, longitude)
     }, () => {
-      this._fetchWeather(25.03, 121.30);
-    });
+      this._fetchWeather(25.03, 121.30)
+    })
+  }
 
-  },
-
-  _fetchWeather(latitude, longitude){
+  _fetchWeather (latitude, longitude) {
     request
       .get(`http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&APPID=${APPID}`)
       .end((err, res) => {
-        if(err){
-          console.log(err);
+        if (err) {
+          console.log(err)
         } else {
-
           this.setState({
             day: DAY_MAP[(new Date()).getDay()],
             celsius: this._toCelsius(res.body.main.temp),
             icon: this._getIcon(res.body.weather[0].id),
             description: res.body.weather[0].description,
             name: res.body.name
-          });
-          console.log(res);
+          })
+          console.log(res)
         }
-      });
-  },
+      })
+  }
 
-  _getIcon(id) {
-    if(id >= 200 && id < 300){
-      return 'RAIN';
-    } else if (id >= 300 && id < 500){
-      return 'SLEET';
-    } else if (id >= 500 && id < 600){
-      return 'RAIN';
-    } else if (id >= 600 && id < 700){
-      return 'SNOW';
-    } else if (id >= 700 && id < 800){
-      return 'FOG';
-    } else if (id === 800){
-      return 'CLEAR_DAY';
-    } else if (id >= 801 && id < 803){
-      return 'PARTLY_CLOUDY_DAY';
-    } else if (id >= 802 && id < 900){
-      return 'CLOUDY';
-    } else if (id === 905 || (id >= 951 && id <= 956)){
-      return 'WIND';
-    } else if (id >= 900 && id < 1000){
-      return 'RAIN';
+  _getIcon (id) {
+    if (id >= 200 && id < 300) {
+      return 'RAIN'
+    } else if (id >= 300 && id < 500) {
+      return 'SLEET'
+    } else if (id >= 500 && id < 600) {
+      return 'RAIN'
+    } else if (id >= 600 && id < 700) {
+      return 'SNOW'
+    } else if (id >= 700 && id < 800) {
+      return 'FOG'
+    } else if (id === 800) {
+      return 'CLEAR_DAY'
+    } else if (id >= 801 && id < 803) {
+      return 'PARTLY_CLOUDY_DAY'
+    } else if (id >= 802 && id < 900) {
+      return 'CLOUDY'
+    } else if (id === 905 || (id >= 951 && id <= 956)) {
+      return 'WIND'
+    } else if (id >= 900 && id < 1000) {
+      return 'RAIN'
     }
-  },
+  }
 
-  _toCelsius(temp) {
-    return parseInt( (temp - 273.15) * 10 ) / 10 + '°C';
-  },
+  _toCelsius (temp) {
+    return parseInt((temp - 273.15) * 10) / 10 + '°C'
+  }
 
-  render() {
+  render () {
     let {
       icon,
       celsius,
       description,
       name
-    } = this.state;
+    } = this.state
     return (
       <div className='wrapper'>
         <h1>Demo</h1>
@@ -103,7 +98,7 @@ const Demo = React.createClass({
           <br />
           <h1 className='temperature' >{celsius}</h1>
           <label className='description' >{description}</label>
-          <hr/>
+          <hr />
           <h1 className='cityname'>{name}</h1>
         </div>
 
@@ -112,7 +107,6 @@ const Demo = React.createClass({
         <Usage value={`<Skycons color='white' icon='CLEAR_DAY' />`}>
           <Skycons color='white' icon='CLEAR_DAY' />
         </Usage>
-
 
         <Usage value={`<Skycons color='white' icon='CLEAR_NIGHT' />`} >
           <Skycons color='white' icon='CLEAR_NIGHT' />
@@ -153,25 +147,24 @@ const Demo = React.createClass({
         <br />
         <h1>autoplay</h1>
         <Usage value={`<Skycons color='white' icon='PARTLY_CLOUDY_DAY' autoplay={false}/>`} >
-          <Skycons color='white' icon='PARTLY_CLOUDY_DAY' autoplay={false}/>
+          <Skycons color='white' icon='PARTLY_CLOUDY_DAY' autoplay={false} />
         </Usage>
 
         <br />
         <h1>color</h1>
         <Usage value={`<Skycons color='yellow' icon='CLEAR_DAY' />`} >
-          <Skycons color='yellow' icon='CLEAR_DAY'/>
+          <Skycons color='yellow' icon='CLEAR_DAY' />
         </Usage>
 
         <Usage value={`<Skycons color='cyan' icon='CLEAR_DAY' />`} >
-          <Skycons color='cyan' icon='CLEAR_DAY'/>
+          <Skycons color='cyan' icon='CLEAR_DAY' />
         </Usage>
       </div>
-    );
+    )
   }
-
-});
+}
 
 render(
   <Demo />,
   document.getElementById('main')
-);
+)

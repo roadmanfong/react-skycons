@@ -1,37 +1,33 @@
-import React from 'react';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-const Usage = React.createClass({
+export default class ReactSkycons extends React.Component {
+  static propTypes = {
+    value: PropTypes.string,
+    children: PropTypes.node
+  };
 
-  propTypes: {
-    value: React.PropTypes.string,
-    children: React.PropTypes.node
-  },
+  static defaultProps = {
+    value: ''
+  }
 
-  getDefaultProps() {
-    return {
-      value: ''
-    };
-  },
+  onSelect = (event) => {
+    event.currentTarget.select()
+  }
 
-  handleSelect(event) {
-    event.currentTarget.select();
-  },
-
-  render() {
-    let {children, value} = this.props;
+  render () {
+    const { children, value } = this.props
 
     return (
       <div className='icon-usage'>
         {children}
-        <br/>
+        <br />
         <input
-          onClick={this.handleSelect}
+          onClick={this.onSelect}
           type='text'
           value={value}
           readOnly />
       </div>
-    );
+    )
   }
-});
-
-export default Usage;
+}

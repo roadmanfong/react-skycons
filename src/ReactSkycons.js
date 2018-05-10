@@ -46,7 +46,10 @@ export default class ReactSkycons extends React.Component {
 
   componentDidMount() {
     const { skycons } = this.state;
-    skycons.add(ReactDOM.findDOMNode(this), Skycons[this.props.icon]);
+    skycons.add(
+      ReactDOM.findDOMNode(this),
+      Skycons[this.props.icon.toUpperCase().replace("-", "_")]
+    );
 
     if (this.props.autoplay) {
       skycons.play();

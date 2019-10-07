@@ -43,8 +43,10 @@ export default class ReactSkycons extends React.Component {
     }
   }
 
-  componentWillReceiveProps (nextProps) {
-    this.state.skycons.set(ReactDOM.findDOMNode(this), Skycons[nextProps.icon])
+  componentDidUpdate(prevProps) {
+    if(prevProps.icon !== this.props.icon) {
+      this.state.skycons.set(ReactDOM.findDOMNode(this), Skycons[this.props.icon])
+    }
   }
 
   componentWillUnmount () {

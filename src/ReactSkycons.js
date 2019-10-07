@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import ReactDOM from 'react-dom'
-const Skycons = require('skycons')(window)
+const Skycons = require('skycons')(global.window || {})
 
 export default class ReactSkycons extends React.Component {
   static propTypes = {

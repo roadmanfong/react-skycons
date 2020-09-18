@@ -2,8 +2,6 @@
 
 skycons as React components
 
-[Demo](http://roadmanfong.github.io/react-skycons/example/)
-
 ## Installation
 
 Install via [npm](https://www.npmjs.com/package/react-skycons)

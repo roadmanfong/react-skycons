@@ -2,6 +2,8 @@
 
 skycons as React components
 
+[![Build Status](https://travis-ci.org/roadmanfong/react-skycons.svg?branch=master)](https://travis-ci.org/roadmanfong/react-skycons) [![npm version](https://img.shields.io/npm/v/react-skycons.svg?style=flat-square)](https://www.npmjs.com/package/react-skycons) [![npm downloads](https://img.shields.io/npm/dm/react-skycons.svg?style=flat-square)](https://www.npmjs.com/package/react-skycons)
+
 ## Installation
 
 Install via [npm](https://www.npmjs.com/package/react-skycons)

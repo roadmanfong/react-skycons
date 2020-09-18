@@ -14,7 +14,7 @@ export enum SkyconsType {
   FOG = 'FOG',
 }
 
-interface Props
+export interface SkyconsProps
   extends React.DetailedHTMLProps<
     React.CanvasHTMLAttributes<HTMLCanvasElement>,
     HTMLCanvasElement
@@ -26,7 +26,7 @@ interface Props
   size?: number
 }
 
-export default function SkyconsComponent(props: Props) {
+export default function SkyconsComponent(props: SkyconsProps) {
   const {
     color,
     animate = true,
@@ -64,6 +64,8 @@ export default function SkyconsComponent(props: Props) {
         height: size,
         ...style,
       }}
+      aria-label={type}
+      role="img"
       {...restPops}
     />
   )

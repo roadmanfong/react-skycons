@@ -1,16 +1,13 @@
 {
   "name": "react-skycons",
   "version": "0.7.0",
-  "description": "",
-  "main": "dist/react-skycons.js",
-  "scripts": {
-    "lint": "eslint .",
-    "build": "babel src/ReactSkycons.js --out-file dist/ReactSkycons.js",
-    "prepublish": "npm run build",
-    "prebuild": "npm run lint",
-    "example": "npm run build && webpack example/index.js --config example/webpack.config.js --output-path example/assets"
-  },
-  "author": "Fong Kuanghuei <waneblade@gmail.com>",
+  "description": "skycons",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "author": "Fong Kuanghui <waneblade@gmail.com>",
   "homepage": "http://roadmanfong.github.io/react-skycons/",
   "bugs": {
     "url": "https://github.com/roadmanfong/react-skycons/issues"
@@ -20,41 +17,117 @@
     "react-component",
     "skycons"
   ],
+  "sideEffects": false,
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/roadmanfong/react-skycons.git"
+    "url": "https://github.com/roadmanfong/zustand-persist.git"
   },
   "dependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
     "skycons": "^1.0.0"
   },
   "peerDependencies": {
-    "prop-types": "^15.5.10",
-    "react": "^0.14.9 || >=15.3.0",
-    "react-dom": "^0.14.9 || >=15.3.0"
+    "react": ">=16.8.0"
+  },
+  "prettier": {
+    "semi": false,
+    "trailingComma": "es5",
+    "singleQuote": true,
+    "jsxBracketSameLine": true,
+    "tabWidth": 2,
+    "printWidth": 80
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "jest",
+      "scripts"
+    ],
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true,
+    "coverageReporters": [
+      "json",
+      "html",
+      "text",
+      "text-summary"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,ts,tsx}",
+      "tests/**/*.{js,ts,tsx}"
+    ]
   },
   "devDependencies": {
-    "babel": "^6.23.0",
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.10.4",
-    "babel-eslint": "^6.1.2",
-    "babel-loader": "^6.2.4",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "eslint-config-standard": "^10.2.1",
-    "eslint-config-standard-react": "^5.0.0",
-    "babel-preset-react": "^6.24.1",
-    "eslint": "^3.0.1",
-    "eslint-plugin-babel": "^3.3.0",
-    "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-react": "^5.2.2",
-    "extract-text-webpack-plugin": "^1.0.1",
-    "standard": "^10.0.3",
-    "standard-react": "^4.0.0",
-    "superagent": "^2.0.0",
-    "webpack": "^1.13.1"
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "@babel/preset-typescript": "^7.10.4",
+    "@rollup/plugin-typescript": "^5.0.2",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.0.2",
+    "@types/jest": "^26.0.13",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "@typescript-eslint/eslint-plugin": "2.x",
+    "@typescript-eslint/parser": "2.x",
+    "babel-eslint": "10.x",
+    "babel-jest": "^26.3.0",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-named-asset-import": "^0.3.6",
+    "cspell": "^4.1.0",
+    "eslint": "6.x",
+    "eslint-config-react-app": "^5.2.1",
+    "eslint-plugin-flowtype": "4.x",
+    "eslint-plugin-import": "2.x",
+    "eslint-plugin-jsx-a11y": "6.x",
+    "eslint-plugin-react": "7.x",
+    "eslint-plugin-react-hooks": "^4.1.2",
+    "husky": "^4.2.5",
+    "jest": "^26.4.2",
+    "jest-environment-jsdom-sixteen": "^1.0.3",
+    "lint-staged": ">=10",
+    "prettier": "^2.1.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.3",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.26.9",
+    "tslib": "^2.0.1",
+    "typescript": "^4.0.2"
+  },
+  "scripts": {
+    "clean": "rimraf lib",
+    "format": "eslint 'src/**/*.{js,ts,tsx}' --quiet --fix && prettier --write .",
+    "lint": "tsc --project tsconfig.json --noEmit && eslint 'src/**/*.{js,ts,tsx}' && cspell 'src/**/*.{js,ts,tsx}'",
+    "test": "jest  --env=jest-environment-jsdom-sixteen",
+    "build": "rollup -c",
+    "prepublishOnly": "npm run build"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "plugin:react-hooks/recommended"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": "eslint --cache --fix",
+    "*.{js,ts,tsx,css,md}": "prettier --write"
   }
 }

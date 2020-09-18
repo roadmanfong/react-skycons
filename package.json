@@ -21,7 +21,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/roadmanfong/zustand-persist.git"
+    "url": "https://github.com/roadmanfong/react-skycons.git"
   },
   "dependencies": {
     "skycons": "^1.0.0"

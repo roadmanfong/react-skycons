@@ -19,6 +19,10 @@ import React from 'react'
 import Skycons, { SkyconsType } from 'react-skycons'
 
 function Demo() {
+  const svgProps = {
+    style: { backgroundColor: 'red },
+  }
+
   return (
     <Skycons
       color="grey"
@@ -26,6 +30,7 @@ function Demo() {
       animate={true}
       size={24}
       resizeClear={true}
+      {...svgProps}
     />
   )
 }

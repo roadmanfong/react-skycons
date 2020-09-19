@@ -23,6 +23,7 @@
     "url": "https://github.com/roadmanfong/react-skycons.git"
   },
   "dependencies": {
+    "globalthis": "^1.0.1",
     "skycons": "^1.0.0"
   },
   "peerDependencies": {

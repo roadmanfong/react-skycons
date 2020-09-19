@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react'
-const Skycons = require('skycons')(window)
+const globalThis = require('globalthis')()
+const Skycons = require('skycons')(globalThis)
 
 export enum SkyconsType {
   CLEAR_DAY = 'CLEAR_DAY',

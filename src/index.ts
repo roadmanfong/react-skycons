@@ -1,4 +1,4 @@
-import Skycons, { SkyconsType, SkyconsProps } from './Skycons'
+import Skycons, { SkyconsType } from './Skycons'
 export { Skycons, SkyconsType }
-export type { SkyconsProps }
+export type { SkyconsProps } from './Skycons'
 export default Skycons

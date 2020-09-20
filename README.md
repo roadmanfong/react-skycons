@@ -22,12 +22,12 @@ import Skycons, { SkyconsType } from 'react-skycons'
 
 function Demo() {
   const svgProps = {
-    style: { backgroundColor: 'red },
+    style: { backgroundColor: 'blue' },
   }
 
   return (
     <Skycons
-      color="grey"
+      color="white"
       type={SkyconsType.CLEAR_DAY}
       animate={true}
       size={24}
